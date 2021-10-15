@@ -145,7 +145,7 @@ public class BudgetApp {
         for (Expense e : monthlyExpense.getExpenses()) {
             int price = e.getPrice();
             String desc = e.getDescription();
-            System.out.println(desc + ": price = $" + price );
+            System.out.println(desc + ": price = $" + price);
         }
     }
 }
