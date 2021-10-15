@@ -6,6 +6,9 @@ import model.MonthlyExpenses;
 
 import java.util.Scanner;
 
+// This BudgetApp references code from this TellerApp repository
+// Link: [https://github.students.cs.ubc.ca/CPSC210/TellerApp]
+
 // Budget desktop application
 public class BudgetApp {
     private ExpenseLog log;
