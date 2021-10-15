@@ -32,30 +32,29 @@ class MonthlyExpensesTest {
         m1 = new MonthlyExpenses("October 2021");
         m2 = new MonthlyExpenses("September 2021");
         m3 = new MonthlyExpenses("April 2019");
+
+        log = new ExpenseLog();
     }
 
     @Test
     void testAddExpense() {
         m1.addExpense(e1);
         assertEquals(1, m1.length());
+        assertTrue(m1.contains(e1));
 
         m1.addExpense(e2);
         assertEquals(2, m1.length());
+        assertTrue(m1.contains(e2));
 
         m1.addExpense(e3);
         assertEquals(2, m1.length());
+        assertFalse(m1.contains(e3));
     }
 
     @Test
-    void testRemoveExpense() {
+    void testGetExpense() {
         m1.addExpense(e1);
-        m1.addExpense(e2);
-        m1.removeExpense(e2);
-        assertEquals(1, m1.length());
-
-        m2.addExpense(e3);
-        m2.removeExpense(e3);
-        assertEquals(0, m2.length());
+        assertEquals(e1, m1.getExpense("phone"));
     }
 
     @Test
@@ -90,9 +89,11 @@ class MonthlyExpensesTest {
         m1.addExpense(e2);
         log.addMonthlyExpenses(m1);
         assertEquals(1, log.length());
+        assertTrue(log.contains(m1));
 
         log.addMonthlyExpenses(m2);
         assertEquals(2, log.length());
+        assertTrue(log.contains(m2));
     }
 
     @Test
@@ -102,9 +103,8 @@ class MonthlyExpensesTest {
         log.addMonthlyExpenses(m1);
         log.getMonthlyExpenses("October 2021");
         assertTrue(log.contains(m1));
-        assertTrue(m1.contains(e1));
 
-        assertEquals(null, log.getMonthlyExpenses("September 2019");
+        assertEquals(null, log.getMonthlyExpenses("September 2019"));
 
         log.addMonthlyExpenses(m2);
         log.getMonthlyExpenses("September 2021");

@@ -11,13 +11,14 @@ public class ExpenseLog {
         expenseLog = new ArrayList<>();
     }
 
+    // REQUIRES: only one entry into expense log per date
     public void addMonthlyExpenses(MonthlyExpenses m) {
         expenseLog.add(m);
     }
 
     public MonthlyExpenses getMonthlyExpenses(String date) {
         for (MonthlyExpenses m : expenseLog) {
-            if (date == m.getDate()) {
+            if (date.equals(m.getDate())) {
                 return m;
             }
         }
@@ -26,5 +27,9 @@ public class ExpenseLog {
 
     public int length() {
         return expenseLog.size();
+    }
+
+    public boolean contains(MonthlyExpenses m) {
+        return expenseLog.contains(m);
     }
 }

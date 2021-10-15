@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // Represents a list of expenses made by the user
 public class MonthlyExpenses {
@@ -20,7 +21,7 @@ public class MonthlyExpenses {
     // MODIFIES: this
     // EFFECTS: sets a budget for the month
     public int setBudget(String date, int i) {
-        if (this.date == date) {
+        if (this.date.equals(date)) {
             this.budget = i;
             budgetRemaining = budget;
             return budget;
@@ -32,19 +33,23 @@ public class MonthlyExpenses {
     // MODIFIES: this
     // EFFECTS: returns true if Expense can be added to the list of expenses for the month
     public void addExpense(Expense e) {
-        if (this.date == e.getDate()) {
+        if (this.date.equals(e.getDate())) {
             monthlyExpenses.add(e);
             budgetRemaining = budgetRemaining - e.getPrice();
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: returns true if expense is recorded in monthly expenses and can be removed
-    public void removeExpense(Expense e) {
-        if (this.date == e.getDate()) {
-            monthlyExpenses.remove(e);
-            budgetRemaining = budgetRemaining + e.getPrice();
+    public Expense getExpense(String desc) {
+        for (Expense e: monthlyExpenses) {
+            if (desc.equals(e.getDescription())) {
+                return e;
+            }
         }
+        return null;
+    }
+
+    public List<Expense> getExpenses() {
+        return monthlyExpenses;
     }
 
     // EFFECTS: returns the budget remaining, negative if gone over budget
@@ -60,15 +65,10 @@ public class MonthlyExpenses {
     public int length() {
         return monthlyExpenses.size();
     }
+
+    public boolean contains(Expense e) {
+        return monthlyExpenses.contains(e);
+    }
 }
 
-
-//method for get all expenses
-//method for if all expenses are over set budget (boolean)
-// method for setting initial budget (like initial balance so that owuld be its own field)
-//field for what the spent money so far is
-// subtract expense from set budget
-//method for get how much left in budget
-//can display negative values, this will represent over budget
-//method for looking through budget list according to description
 

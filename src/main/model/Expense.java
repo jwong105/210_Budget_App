@@ -6,8 +6,9 @@ public class Expense {
     private String description;
     private int price;
 
-    //REQUIRES: price >= 0
-    //EFFECTS: Expense has given date purchased, small description of purchase and price paid
+    // REQUIRES: price >= 0
+    // MODIFIES: this
+    // EFFECTS: Expense has given date purchased, small description of purchase and price paid
     public Expense(String date, String description, int price) {
         this.date = date;
         this.description = description;
