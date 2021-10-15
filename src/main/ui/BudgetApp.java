@@ -127,7 +127,7 @@ public class BudgetApp {
         } else {
             int remainingBudget = monthlyExpenses.getBudgetRemaining();
             if (remainingBudget >= 0) {
-                System.out.println("You still have $" + remainingBudget + " remaining in your budget.");
+                System.out.println("You have $" + remainingBudget + " remaining in your budget.");
             } else {
                 System.out.println("You have gone over your set budget for this month by $" + remainingBudget);
             }

@@ -51,12 +51,6 @@ class MonthlyExpensesTest {
     }
 
     @Test
-    void testGetExpense() {
-        m1.addExpense(e1);
-        assertEquals(e1, m1.getExpense("phone"));
-    }
-
-    @Test
     void testSetBudget() {
         assertEquals(365, m1.setBudget("October 2021", 365));
         assertEquals(0, m2.setBudget("October 2021", 365));
@@ -102,11 +96,17 @@ class MonthlyExpensesTest {
         log.addMonthlyExpenses(m1);
         log.getMonthlyExpenses("October 2021");
         assertTrue(log.contains(m1));
+        m1.getExpenses();
+        assertTrue(m1.contains(e1));
+        assertTrue(m1.contains(e2));
 
         assertEquals(null, log.getMonthlyExpenses("September 2019"));
 
+        m2.addExpense(e2);
         log.addMonthlyExpenses(m2);
         log.getMonthlyExpenses("September 2021");
         assertTrue(log.contains(m2));
+        assertFalse(m2.contains(e3));
+        assertFalse(m2.contains(e2));
     }
 }

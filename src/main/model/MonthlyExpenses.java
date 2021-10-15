@@ -39,16 +39,6 @@ public class MonthlyExpenses {
         }
     }
 
-    // EFFECTS: returns the expense if added to monthly expenses
-    public Expense getExpense(String desc) {
-        for (Expense e: monthlyExpenses) {
-            if (desc.equals(e.getDescription())) {
-                return e;
-            }
-        }
-        return null;
-    }
-
     // EFFECTS: returns monthly expenses
     public List<Expense> getExpenses() {
         return monthlyExpenses;
