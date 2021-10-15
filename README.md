@@ -25,8 +25,9 @@ overspending unnecessarily.
 
 ## User Stories
 - As a user, I want to be able to set a budget to stay within 
-- As a user, I want to be able to add an expense to my list of purchases along with a small description of the purchase,
+- As a user, I want to be able to add an expense to my list of expenses along with a small description of the purchase,
   and the price paid
 - As a user, I want to be able to view the list of expenses made 
+- As a user, I want to be able to select an expense made and view the price spent on that purchase
 - As a user, I want to be able to view how much of my budget I have remaining
 
