@@ -1,14 +1,13 @@
 package model;
 
-// Represents an expense made with a description of the purchase and the price spent
+// Represents an expense made with a description of the purchase and the price paid in dollars
 public class Expense {
     private String date;
     private String description;
     private int price;
 
     // REQUIRES: price >= 0
-    // MODIFIES: this
-    // EFFECTS: Expense has given date purchased, small description of purchase and price paid
+    // EFFECTS: Expense has date purchased, small description of purchase and price paid in dollars
     public Expense(String date, String description, int price) {
         this.date = date;
         this.description = description;
@@ -25,7 +24,7 @@ public class Expense {
         return description;
     }
 
-    // EFFECTS: returns price of purchase
+    // EFFECTS: returns price of purchase in dollars
     public int getPrice() {
         return price;
     }
