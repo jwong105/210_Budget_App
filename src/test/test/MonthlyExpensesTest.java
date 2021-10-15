@@ -40,10 +40,12 @@ class MonthlyExpensesTest {
         m1.addExpense(e1);
         assertEquals(1, m1.length());
         assertTrue(m1.contains(e1));
+        assertEquals("phone", e1.getDescription());
 
         m1.addExpense(e2);
         assertEquals(2, m1.length());
         assertTrue(m1.contains(e2));
+        assertEquals("notebook", e2.getDescription());
 
         m1.addExpense(e3);
         assertEquals(2, m1.length());
