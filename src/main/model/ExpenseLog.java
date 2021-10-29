@@ -43,6 +43,7 @@ public class ExpenseLog implements Writable {
         return null;
     }
 
+    // getter
     public String getName() {
         return name;
     }
@@ -57,11 +58,12 @@ public class ExpenseLog implements Writable {
         return expenseLog.contains(m);
     }
 
+    // getter
     public String getMonth(int month) {
         return new DateFormatSymbols().getMonths()[month - 1];
     }
 
-    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    // EFFECTS: returns an unmodifiable list of MonthlyExpenses in the ExpenseLog
     public List<MonthlyExpenses> getMonthlyExpense() {
         return Collections.unmodifiableList(expenseLog);
     }
@@ -73,7 +75,7 @@ public class ExpenseLog implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns MonthlyExpenses in this ExpenseLog as a JSON array
     private JSONArray monthlyExpensesToJson() {
         JSONArray jsonArray = new JSONArray();
 

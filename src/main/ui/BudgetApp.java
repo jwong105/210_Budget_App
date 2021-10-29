@@ -214,7 +214,7 @@ public class BudgetApp {
         }
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the ExpenseLog to file
     private void saveBudget() {
         try {
             jsonWriter.open();
@@ -227,7 +227,7 @@ public class BudgetApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads ExpenseLog from file
     private void loadBudget() {
         try {
             log = jsonReader.read();

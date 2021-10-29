@@ -71,12 +71,12 @@ public class MonthlyExpenses implements Writable {
         return monthlyExpenses;
     }
 
-    // EFFECTS: returns the budget remaining in dollars, this value will be negative if gone over budget
+    // getter
     public double getBudgetRemaining() {
         return budgetRemaining;
     }
 
-    // EFFECTS: returns the month of the monthly expense list
+    // getter
     public YearMonth getDate() {
         return this.date;
     }
@@ -86,26 +86,34 @@ public class MonthlyExpenses implements Writable {
         return monthlyExpenses.size();
     }
 
+    // getter
     public int getYear() {
         return year;
     }
 
+    // setter
     public void setYear(int year) {
         this.year = year;
     }
 
+    // getter
     public int getMonth() {
         return month;
     }
 
+    // setter
     public void setMonth(int month) {
         this.month = month;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the budget to the budget passed in
     public void forceBudget(int budget) {
         this.budget = budget;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the remainingBudget to the remainingBudget passed in
     public void forceBudgetRemaining(int budgetRemaining) {
         this.budgetRemaining = budgetRemaining;
     }
@@ -115,7 +123,7 @@ public class MonthlyExpenses implements Writable {
         return monthlyExpenses.contains(e);
     }
 
-    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    // EFFECTS: returns an unmodifiable list of Expenses in this MonthlyExpense
     public List<Expense> getExpense() {
         return Collections.unmodifiableList(monthlyExpenses);
     }
@@ -130,7 +138,7 @@ public class MonthlyExpenses implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns Expenses in this MonthlyExpense as a JSON array
     private JSONArray expenseToJson() {
         JSONArray jsonArray = new JSONArray();
 

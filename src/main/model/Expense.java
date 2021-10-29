@@ -3,7 +3,6 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.math.BigDecimal;
 import java.time.YearMonth;
 
 // Represents an expense made with a description of the purchase and the price paid in dollars
@@ -24,17 +23,17 @@ public class Expense implements Writable {
         this.month = month;
     }
 
-    // EFFECTS: returns the date the purchase was made
+    // getter
     public YearMonth getDate() {
         return date;
     }
 
-    // EFFECTS: returns description of purchase
+    // getter
     public String getDescription() {
         return description;
     }
 
-    // EFFECTS: returns price of purchase in dollars
+    // getter
     public int getPrice() {
         return price;
     }

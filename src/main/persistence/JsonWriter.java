@@ -3,13 +3,12 @@ package persistence;
 import model.ExpenseLog;
 import org.json.JSONObject;
 
-
 import java.io.*;
 
 // This JsonWriter references code from this GitHub repository
 // Link: [https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo]
 
-// Represents a writer that writes JSON representation of workroom to file
+// Represents a writer that writes JSON representation of ExpenseLog to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -28,7 +27,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of ExpenseLog to file
     public void write(ExpenseLog el) {
         JSONObject json = el.toJson();
         saveToFile(json.toString(TAB));

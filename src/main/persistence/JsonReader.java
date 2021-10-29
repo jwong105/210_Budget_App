@@ -15,7 +15,7 @@ import org.json.*;
 // This JsonReader references code from this GitHub repository
 // Link: [https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo]
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads ExpenseLog from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -43,7 +43,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses ExpenseLog from JSON object and returns it
     private ExpenseLog parseExpenseLog(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         ExpenseLog el = new ExpenseLog(name);
@@ -52,7 +52,7 @@ public class JsonReader {
     }
 
     // MODIFIES: el
-    // EFFECTS: parses MonthlyExpenses from JSON object and adds them to ExpenseLog
+    // EFFECTS: parses ExpenseLog from JSON object and adds them to ExpenseLog
     private void addLog(ExpenseLog el, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("monthly expenses");
         for (Object json : jsonArray) {
@@ -82,7 +82,7 @@ public class JsonReader {
     }
 
     // MODIFIES: e
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // EFFECTS: parses Expense from JSON object and adds it to MonthlyExpenses
     private void addExpense(MonthlyExpenses monthlyExpenses, JSONObject jsonObject) {
         int year = jsonObject.getInt("year");
         int month = jsonObject.getInt("month");
