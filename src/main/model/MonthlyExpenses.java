@@ -52,8 +52,8 @@ public class MonthlyExpenses implements Writable {
 
     // MODIFIES: this
     // EFFECTS: removes expense from monthly expenses if month expense was made matches month of monthly expenses
-    public void removeExpenses(Expense e) {
-        if (this.date.equals(e.getDate())) {
+    public void removeExpenses(String description, int price, Expense e) {
+        if (description.equals(e.getDescription()) && price == e.getPrice()) {
             monthlyExpenses.remove(e);
         }
     }

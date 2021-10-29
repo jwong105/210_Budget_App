@@ -24,7 +24,7 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
+    void testReaderEmptyExpenseLog() {
         JsonReader reader = new JsonReader("./data/testWriterEmptyExpenseLog.json");
         try {
             ExpenseLog el = reader.read();
@@ -37,7 +37,7 @@ class JsonReaderTest extends JsonTest {
 
 
     @Test
-    void testReaderGeneralWorkRoom() {
+    void testReaderGeneralExpenseLog() {
         JsonReader reader = new JsonReader("./data/testWriterGeneralExpenseLog.json");
         try {
             ExpenseLog el = reader.read();

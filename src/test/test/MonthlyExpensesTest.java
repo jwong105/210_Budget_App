@@ -1,7 +1,5 @@
 package test;
 
-import exceptions.NotValidMonthException;
-import exceptions.NotValidYearException;
 import model.Expense;
 import model.ExpenseLog;
 import model.MonthlyExpenses;
@@ -55,17 +53,20 @@ class MonthlyExpensesTest {
     }
 
     @Test
-    void testRemoveExpense() {
+    void testRemoveExpenses() {
         m1.addExpense(e1);
         m1.addExpense(e2);
-        m1.removeExpenses(e1);
+        m1.removeExpenses("phone", 1200, e1);
 
         assertEquals(1, m1.length());
         assertTrue(m1.contains(e2));
         assertTrue(!m1.contains(e1));
         assertEquals("notebook", e2.getDescription());
 
-        m1.removeExpenses(e2);
+        m1.removeExpenses("notebook", 400, e2);
+        assertTrue(m1.contains(e2));
+
+        m1.removeExpenses("notebook", 20, e2);
         assertTrue(!m1.contains(e2));
         assertEquals(0, m1.length());
     }
@@ -76,12 +77,18 @@ class MonthlyExpensesTest {
         m1.addExpense(e1);
         m1.addExpense(e2);
         m1.addBackExpense(e1);
-        m1.removeExpenses(e1);
+        m1.removeExpenses("phone", 1200, e1);
         assertEquals(365 - 20, m1.getBudgetRemaining());
 
         m1.addBackExpense(e2);
-        m1.removeExpenses(e2);
+        m1.removeExpenses("notebook", 20, e2);
         assertEquals(365, m1.getBudgetRemaining());
+
+        m2.setBudget(2021, 9, 100);
+        m2.addExpense(e3);
+        m2.addBackExpense(e3);
+        m2.removeExpenses("groceries", 60, e3);
+        assertEquals(100, m2.getBudgetRemaining());
     }
 
     @Test
@@ -137,7 +144,7 @@ class MonthlyExpensesTest {
         m1.getExpenses();
         assertTrue(m1.contains(e1));
         assertTrue(m1.contains(e2));
-        m1.removeExpenses(e1);
+        m1.removeExpenses("phone", 1200, e1);
         assertFalse(m1.contains(e1));
 
         assertEquals(null, log.getMonthlyExpenses(2019, 9));

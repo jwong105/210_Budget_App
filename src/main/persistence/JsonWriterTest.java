@@ -29,7 +29,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyExpenseLog() {
         try {
             ExpenseLog el = new ExpenseLog("Jennifer's expense log");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyExpenseLog.json");
@@ -47,7 +47,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralExpenseLog() {
         try {
             ExpenseLog el = new ExpenseLog("Jennifer's expense log");
             MonthlyExpenses m1 = new MonthlyExpenses(2021, 10);

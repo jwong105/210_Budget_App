@@ -1,8 +1,5 @@
 package model;
 
-
-import exceptions.NotValidMonthException;
-import exceptions.NotValidYearException;
 import org.json.JSONObject;
 import persistence.Writable;
 
