@@ -1,13 +1,26 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.text.DateFormatSymbols;
+import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+// This ExpenseLog references code from this StackOverflow website
+// Link: [https://stackoverflow.com/questions/1038570/how-can-i-convert-an-integer-to-localized-month-name-in-java]
 
 // Represents a list of expenses made by the user
-public class ExpenseLog {
+public class ExpenseLog implements Writable {
     private ArrayList<MonthlyExpenses> expenseLog;
+    private String name;
 
     // EFFECTS: constructs a new log of all expenses recorded for each month
-    public ExpenseLog() {
+    public ExpenseLog(String name) {
+        this.name = name;
         expenseLog = new ArrayList<>();
     }
 
@@ -20,13 +33,18 @@ public class ExpenseLog {
 
     // MODIFIES: this
     // EFFECTS: returns the monthly expense list if already added to expense log
-    public MonthlyExpenses getMonthlyExpenses(String date) {
+    public MonthlyExpenses getMonthlyExpenses(int year, int month) {
         for (MonthlyExpenses m : expenseLog) {
+            YearMonth date = YearMonth.of(year, month);
             if (date.equals(m.getDate())) {
                 return m;
             }
         }
         return null;
+    }
+
+    public String getName() {
+        return name;
     }
 
     // EFFECTS: returns the number of monthly expense lists in expense log
@@ -37,5 +55,32 @@ public class ExpenseLog {
     // EFFECTS: returns true if expense log contains the monthly expense list, false otherwise
     public boolean contains(MonthlyExpenses m) {
         return expenseLog.contains(m);
+    }
+
+    public String getMonth(int month) {
+        return new DateFormatSymbols().getMonths()[month-1];
+    }
+
+    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    public List<MonthlyExpenses> getMonthlyExpense() {
+        return Collections.unmodifiableList(expenseLog);
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("monthly expenses", monthlyExpensesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray monthlyExpensesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (MonthlyExpenses monthlyExpenses: expenseLog) {
+            jsonArray.put(monthlyExpenses.toJson());
+        }
+
+        return jsonArray;
     }
 }

@@ -24,3 +24,7 @@ accidentally overspending.
   budget for the month
 - As a user, I want to be able to view all the expenses I made during the month
 
+
+## Phase 2 User Stories
+- As a user, I want to be able to save my list of expenses for each month
+- As a user, I want to be able to load my list of expenses for each month
