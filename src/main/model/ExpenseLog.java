@@ -18,7 +18,7 @@ public class ExpenseLog implements Writable {
     private ArrayList<MonthlyExpenses> expenseLog;
     private String name;
 
-    // EFFECTS: constructs a new log of all expenses recorded for each month
+    // EFFECTS: takes a name and constructs a new log of all expenses recorded for each month
     public ExpenseLog(String name) {
         this.name = name;
         expenseLog = new ArrayList<>();
@@ -68,6 +68,7 @@ public class ExpenseLog implements Writable {
         return Collections.unmodifiableList(expenseLog);
     }
 
+    // EFFECTS: returns ExpenseLog as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);

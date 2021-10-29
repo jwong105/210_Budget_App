@@ -128,6 +128,7 @@ public class MonthlyExpenses implements Writable {
         return Collections.unmodifiableList(monthlyExpenses);
     }
 
+    // EFFECTS: returns MonthlyExpenses as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("year", year);

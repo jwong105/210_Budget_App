@@ -38,6 +38,7 @@ public class Expense implements Writable {
         return price;
     }
 
+    // EFFECTS: returns Expense as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("year", year);
