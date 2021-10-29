@@ -81,7 +81,7 @@ public class JsonReader {
         el.addMonthlyExpenses(monthlyExpenses);
     }
 
-    // MODIFIES: e
+    // MODIFIES: el
     // EFFECTS: parses Expense from JSON object and adds it to MonthlyExpenses
     private void addExpense(MonthlyExpenses monthlyExpenses, JSONObject jsonObject) {
         int year = jsonObject.getInt("year");
