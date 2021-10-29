@@ -20,6 +20,8 @@ accidentally overspending.
 - As a user, I want to be able to set a budget to stay within for the month
 - As a user, I want to be able to add an expense to my list of expenses for that month along with a small description of
   the purchase, and the price spent
+- As a user, I want to be able to remove an expense from my list of expenses for that month and reimburse the price to 
+  my remaining budget
 - As a user, I want to be able to view how much of my budget I have remaining or by how much I have gone over my set 
   budget for the month
 - As a user, I want to be able to view all the expenses I made during the month

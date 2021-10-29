@@ -58,7 +58,7 @@ public class ExpenseLog implements Writable {
     }
 
     public String getMonth(int month) {
-        return new DateFormatSymbols().getMonths()[month-1];
+        return new DateFormatSymbols().getMonths()[month - 1];
     }
 
     // EFFECTS: returns an unmodifiable list of thingies in this workroom
