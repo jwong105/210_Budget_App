@@ -7,7 +7,7 @@ import java.time.YearMonth;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class JsonTest {
+public class JsonTests {
     protected void checkMonthlyExpenses(MonthlyExpenses m, int year, int month) {
         assertEquals(year, m.getYear());
         assertEquals(month, m.getMonth());
