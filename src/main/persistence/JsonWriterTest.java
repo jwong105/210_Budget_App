@@ -64,7 +64,6 @@ class JsonWriterTest extends JsonTest {
             JsonReader reader = new JsonReader("./data/testWriterGeneralExpenseLog.json");
             el = reader.read();
             assertEquals("Jennifer's expense log", el.getName());
-            assertEquals(1, el.length());
             List<MonthlyExpenses> monthlyExpensesList = el.getMonthlyExpense();
             checkMonthlyExpenses(monthlyExpensesList.get(0), 2021, 10);
             List<Expense> expenseList = el.getMonthlyExpenses(2021, 10).getExpense();
