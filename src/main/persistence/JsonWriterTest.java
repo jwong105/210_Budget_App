@@ -6,7 +6,6 @@ import model.MonthlyExpenses;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +16,7 @@ class JsonWriterTest extends JsonTest {
     //read in a copy of what was written out.
 
     @Test
-    void testWriterInvalidFile() {
+    void testWriterInvalidExpenseLogFile() {
         try {
             ExpenseLog el = new ExpenseLog("Jennifer's expense log");
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");

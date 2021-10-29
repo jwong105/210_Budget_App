@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class JsonReaderTest extends JsonTest {
 
     @Test
-    void testReaderNonExistentFile() {
+    void testReaderNonExistentExpenseLogFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
             ExpenseLog el = reader.read();

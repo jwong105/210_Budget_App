@@ -66,6 +66,9 @@ class MonthlyExpensesTest {
         m1.removeExpenses("notebook", 400, e2);
         assertTrue(m1.contains(e2));
 
+        m1.removeExpenses("phone", 20, e2);
+        assertTrue(m1.contains(e2));
+
         m1.removeExpenses("notebook", 20, e2);
         assertTrue(!m1.contains(e2));
         assertEquals(0, m1.length());
@@ -85,9 +88,7 @@ class MonthlyExpensesTest {
         assertEquals(365, m1.getBudgetRemaining());
 
         m2.setBudget(2021, 9, 100);
-        m2.addExpense(e3);
         m2.addBackExpense(e3);
-        m2.removeExpenses("groceries", 60, e3);
         assertEquals(100, m2.getBudgetRemaining());
     }
 
