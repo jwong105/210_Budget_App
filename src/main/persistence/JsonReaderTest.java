@@ -29,7 +29,7 @@ public class JsonReaderTest extends JsonTests {
         try {
             ExpenseLog el = reader.read();
             assertEquals("Jennifer's expense log", el.getName());
-            assertEquals(0, el.length());
+            assertEquals(0,el.length());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
