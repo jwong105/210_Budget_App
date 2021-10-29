@@ -1,0 +1,37 @@
+{
+    "monthly expenses": [
+        {
+            "month": 1,
+            "year": 2021,
+            "expense": [
+                {
+                    "month": 1,
+                    "year": 2021,
+                    "price": 100,
+                    "description": "phone"
+                },
+                {
+                    "month": 1,
+                    "year": 2021,
+                    "price": 500,
+                    "description": "notebook"
+                }
+            ],
+            "budget remaining": -100,
+            "budget": 500
+        },
+        {
+            "month": 3,
+            "year": 2021,
+            "expense": [{
+                "month": 3,
+                "year": 2021,
+                "price": 20,
+                "description": "bananas"
+            }],
+            "budget remaining": 380,
+            "budget": 400
+        }
+    ],
+    "name": "Jennifer's expense log"
+}
