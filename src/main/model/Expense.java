@@ -38,6 +38,10 @@ public class Expense implements Writable {
         return price;
     }
 
+    public String toString() {
+        return description + ": $" + price;
+    }
+
     // EFFECTS: returns Expense as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

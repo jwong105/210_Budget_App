@@ -1,4 +1,4 @@
-package persistence;
+package test;
 
 import model.Expense;
 import model.MonthlyExpenses;
@@ -7,7 +7,7 @@ import java.time.YearMonth;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class JsonTests {
+public class JsonTest {
     protected void checkMonthlyExpenses(MonthlyExpenses m, int year, int month) {
         assertEquals(year, m.getYear());
         assertEquals(month, m.getMonth());

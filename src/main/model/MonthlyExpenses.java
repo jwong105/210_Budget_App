@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.text.DateFormatSymbols;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -128,7 +129,16 @@ public class MonthlyExpenses implements Writable {
         return Collections.unmodifiableList(monthlyExpenses);
     }
 
-    // EFFECTS: returns MonthlyExpenses as a JSON object
+    // getter
+    public String getMonthString(int month) {
+        return new DateFormatSymbols().getMonths()[month - 1];
+    }
+
+    public String toString() {
+        return this.getMonthString(month) + " " + year;
+    }
+
+    // EFFECTS: returns MonthlyExpenses.; as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("year", year);

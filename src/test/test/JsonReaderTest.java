@@ -5,7 +5,6 @@ import model.ExpenseLog;
 import model.MonthlyExpenses;
 import org.junit.jupiter.api.Test;
 import persistence.JsonReader;
-import persistence.JsonTests;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class JsonReaderTest extends JsonTests {
+public class JsonReaderTest extends JsonTest {
 
     @Test void testReaderNonExistentExpenseLog() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
