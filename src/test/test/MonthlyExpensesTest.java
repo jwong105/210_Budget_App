@@ -77,7 +77,10 @@ class MonthlyExpensesTest {
     @Test
     void testAddBackExpense() {
         m1.setBudget(2021, 10, 365);
+        assertEquals("October 2021", m1.toString());
+        assertEquals("October", m1.getMonthString(10));
         m1.addExpense(e1);
+        assertEquals("phone: $1200", e1.toString());
         m1.addExpense(e2);
         m1.addBackExpense(e1);
         m1.removeExpenses("phone", 1200, e1);

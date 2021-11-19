@@ -136,6 +136,7 @@ public class MonthlyExpenses implements Writable {
         return new DateFormatSymbols().getMonths()[month - 1];
     }
 
+    // EFFECTS: returns monthly expense as a string
     public String toString() {
         return this.getMonthString(month) + " " + year;
     }

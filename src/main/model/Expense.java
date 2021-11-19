@@ -38,6 +38,7 @@ public class Expense implements Writable {
         return price;
     }
 
+    // EFFECTS: returns expense as a string
     public String toString() {
         return description + ": $" + price;
     }
