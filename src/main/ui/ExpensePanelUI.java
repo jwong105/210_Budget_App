@@ -227,17 +227,5 @@ public class ExpensePanelUI extends JPanel {
             return false;
         }
     }
-
-    // EFFECTS: enables remove button if item is selected
-    public void valueChanged(ListSelectionEvent e) {
-        if (e.getValueIsAdjusting() == false) {
-
-            if (list.getSelectedIndex() == -1) {
-                removeButton.setEnabled(false);
-            } else {
-                removeButton.setEnabled(true);
-            }
-        }
-    }
 }
 

@@ -7,24 +7,18 @@
                 {
                     "month": 1,
                     "year": 2021,
-                    "price": 200,
+                    "price": 100,
                     "description": "desc"
                 },
                 {
                     "month": 1,
                     "year": 2021,
-                    "price": 30,
-                    "description": "desc"
-                },
-                {
-                    "month": 1,
-                    "year": 2021,
-                    "price": 300,
+                    "price": 400,
                     "description": "desc"
                 }
             ],
-            "budget remaining": -30,
-            "budget": 500
+            "budget remaining": -200,
+            "budget": 300
         },
         {
             "month": 2,
@@ -32,11 +26,11 @@
             "expense": [{
                 "month": 2,
                 "year": 2021,
-                "price": 560,
+                "price": 85,
                 "description": "desc"
             }],
-            "budget remaining": 440,
-            "budget": 1000
+            "budget remaining": 5,
+            "budget": 90
         }
     ],
     "name": "Budget App"
