@@ -67,18 +67,19 @@ public class ExpenseUI extends JFrame {
         // EFFECTS: action to be taken when user wants to set the budget for a month
         @Override
         public void actionPerformed(ActionEvent evt) {
-            String txtMonth = JOptionPane.showInputDialog(null,
-                    "Month, in format 1 to 12?", "Enter month", JOptionPane.QUESTION_MESSAGE);
-            String txtYear = JOptionPane.showInputDialog(null,
-                    "Year?", "Enter year", JOptionPane.QUESTION_MESSAGE);
-            int month = Integer.parseInt(txtMonth);
-            int year = Integer.parseInt(txtYear);
+//            String txtMonth = JOptionPane.showInputDialog(null,
+//                    "Month, in format 1 to 12?",
+//                    String.valueOf(monthList.getMonth()));
+//            String txtYear = JOptionPane.showInputDialog(null,
+//                    "Year?", String.valueOf(monthList.getYear()));
+//            int month = Integer.parseInt(txtMonth);
+//            int year = Integer.parseInt(txtYear);
 
             if (monthList.getBudget() == 0) {
                 String txtBudget = JOptionPane.showInputDialog(null,
                         "Budget (in whole numbers)?", "Enter budget", JOptionPane.QUESTION_MESSAGE);
                 int budget = Integer.parseInt(txtBudget);
-                monthList.setBudget(year, month, budget);
+                monthList.setBudget(monthList.getYear(), monthList.getMonth(), budget);
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Budget already set for this date", "System Error", JOptionPane.ERROR_MESSAGE);
@@ -180,12 +181,12 @@ public class ExpenseUI extends JFrame {
         // EFFECTS: action to be taken when user wants to view the remaining budget for the month
         @Override
         public void actionPerformed(ActionEvent evt) {
-            String txtMonth = JOptionPane.showInputDialog(null,
-                    "Month, in format 1 to 12?", "Enter month of purchase", JOptionPane.QUESTION_MESSAGE);
-            String txtYear = JOptionPane.showInputDialog(null, "Year?",
-                    "Enter year of purchase", JOptionPane.QUESTION_MESSAGE);
-            int month = Integer.parseInt(txtMonth);
-            int year = Integer.parseInt(txtYear);
+//            String txtMonth = JOptionPane.showInputDialog(null,
+//                    "Month, in format 1 to 12?", String.valueOf(monthList.getMonth()));
+//            String txtYear = JOptionPane.showInputDialog(null, "Year?",
+//                    String.valueOf(monthList.getYear()));
+//            int month = Integer.parseInt(txtMonth);
+//            int year = Integer.parseInt(txtYear);
 
             if (monthList.getBudget() == 0) {
                 JOptionPane.showMessageDialog(null, "Set a budget for this month first",

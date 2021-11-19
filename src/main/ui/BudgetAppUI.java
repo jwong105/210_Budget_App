@@ -8,14 +8,12 @@ import persistence.JsonWriter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 // Budget main window frame
 class BudgetAppUI extends JFrame {
@@ -33,7 +31,6 @@ class BudgetAppUI extends JFrame {
     // EFFECTS: constructs expense log and sets up button panel, and visual budget app window to display months
     public BudgetAppUI() throws FileNotFoundException {
         log = new ExpenseLog("Budget App");
-        jsonWriter = new JsonWriter(JSON_STORE);
         frame = new JFrame();
         frame.setLayout(new BorderLayout());
 
@@ -79,14 +76,17 @@ class BudgetAppUI extends JFrame {
     // EFFECTS: adds control buttons to main window
     private JPanel addButtonPanel() {
         buttonPanelLeft = new JPanel();
-        buttonPanelLeft.setLayout(new GridLayout(2, 1));
+        buttonPanelLeft.setBackground(Color.lightGray);
+        buttonPanelLeft.setLayout(new GridLayout(3, 1));
         buttonPanelLeft.add(new JButton(new SaveBudget()));
         buttonPanelLeft.add(new JButton(new LoadBudget()));
+        buttonPanelLeft.add(new JButton(new QuitApp()));
         return buttonPanelLeft;
     }
 
     private void addSidePanel() {
         JPanel sidePanel = new JPanel();
+        sidePanel.setBackground(Color.lightGray);
         GridLayout grid = new GridLayout(2,1);
         sidePanel.setLayout(grid);
         sidePanel.setSize(new Dimension(300,750));
@@ -135,13 +135,13 @@ class BudgetAppUI extends JFrame {
         // EFFECTS: action to be taken when user wants to load expense log
         @Override
         public void actionPerformed(ActionEvent evt) {
-//            JFileChooser fileChooser = new JFileChooser("./data");
-//            int choice = fileChooser.showOpenDialog(frame);
-//            if (choice == JFileChooser.APPROVE_OPTION) {
-//                String file = fileChooser.getSelectedFile().getAbsolutePath();
-//                jsonReader = new JsonReader(file);
-            jsonReader = new JsonReader(JSON_STORE);
-//            }
+            JFileChooser fileChooser = new JFileChooser("./data/expenseLog.json");
+            int choice = fileChooser.showOpenDialog(frame);
+            if (choice == JFileChooser.APPROVE_OPTION) {
+                String file = fileChooser.getSelectedFile().getAbsolutePath();
+                jsonReader = new JsonReader(file);
+            }
+//            jsonReader = new JsonReader(JSON_STORE);
             try {
                 log = jsonReader.read();
                 JOptionPane.showMessageDialog(null,
@@ -151,6 +151,22 @@ class BudgetAppUI extends JFrame {
                 JOptionPane.showMessageDialog(null, "Unable to read from file: " + JSON_STORE,
                         "System Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
+    }
+
+    // Save expense log
+    private class QuitApp extends AbstractAction {
+
+        // Constructs button to save expense log
+        QuitApp() {
+            super("Quit");
+        }
+
+        // MODIFIES: this
+        // EFFECTS: action to be taken when user wants to save expense log
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            System.exit(0);
         }
     }
 
