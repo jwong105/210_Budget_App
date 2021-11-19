@@ -15,42 +15,43 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// This BudgetAppUI references code from this StackOverflow website
+// Link: [https://stackoverflow.com/questions/32291830/jfilechooser-showopendialognew-jframe-not-poping-up]
+
 // Budget main window frame
 class BudgetAppUI extends JFrame {
     private static final int WIDTH = 950;
     private static final int HEIGHT = 750;
     private ExpenseLog log;
-    private JFrame frame;
+    protected JFrame parentFrame;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/expenseLog.json";
-    private DefaultListModel<Expense> expenseModel;
     private JPanel logoPanel;
     private JPanel buttonPanelLeft;
+    private MonthlyExpensesUI monthlyExpensesUI;
 
     // EFFECTS: constructs expense log and sets up button panel, and visual budget app window to display months
     public BudgetAppUI() throws FileNotFoundException {
         log = new ExpenseLog("Budget App");
-        frame = new JFrame();
-        frame.setLayout(new BorderLayout());
+        parentFrame = new JFrame();
+        parentFrame.setLayout(new BorderLayout());
 
-        frame.setTitle("Budget App");
-        frame.setSize(WIDTH, HEIGHT);
-
-        expenseModel = new DefaultListModel<>();
+        parentFrame.setTitle("Budget App");
+        parentFrame.setSize(WIDTH, HEIGHT);
 
         addSidePanel();
-        addExpenseLogDisplayPanel(log, expenseModel);
+        addExpenseLogDisplayPanel(log);
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        parentFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        parentFrame.setVisible(true);
     }
 
     // MODIFIES: this
     // EFFECTS: sets up visual budget app window to display list of dates in expense log
-    private void addExpenseLogDisplayPanel(ExpenseLog log, DefaultListModel<Expense> expenseModel) {
-        MonthlyExpensesUI monthlyExpensesUI = new MonthlyExpensesUI(log, expenseModel);
-        frame.add(monthlyExpensesUI, BorderLayout.CENTER);
+    private void addExpenseLogDisplayPanel(ExpenseLog log) {
+        this.monthlyExpensesUI = new MonthlyExpensesUI(log);
+        parentFrame.add(monthlyExpensesUI, BorderLayout.CENTER);
     }
 
     private JPanel addLogoPanel() {
@@ -93,7 +94,7 @@ class BudgetAppUI extends JFrame {
         sidePanel.add(addLogoPanel());
         sidePanel.add(addButtonPanel());
 
-        frame.getContentPane().add(sidePanel, BorderLayout.WEST);
+        parentFrame.getContentPane().add(sidePanel, BorderLayout.WEST);
     }
 
     // Save expense log
@@ -128,22 +129,23 @@ class BudgetAppUI extends JFrame {
 
         // Constructs button to load expense log
         LoadBudget() {
-            super("        Load        ");
+            super("Load");
         }
 
         // MODIFIES: this
         // EFFECTS: action to be taken when user wants to load expense log
         @Override
         public void actionPerformed(ActionEvent evt) {
-            JFileChooser fileChooser = new JFileChooser("./data/expenseLog.json");
-            int choice = fileChooser.showOpenDialog(frame);
-            if (choice == JFileChooser.APPROVE_OPTION) {
-                String file = fileChooser.getSelectedFile().getAbsolutePath();
+            JFileChooser fc = new JFileChooser(JSON_STORE);
+            int returnVal = fc.showOpenDialog(parentFrame);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String file = fc.getSelectedFile().getAbsolutePath();
                 jsonReader = new JsonReader(file);
             }
 //            jsonReader = new JsonReader(JSON_STORE);
             try {
                 log = jsonReader.read();
+                monthlyExpensesUI.createWithLog(log);
                 JOptionPane.showMessageDialog(null,
                         "Loaded " + log.getName() + " from " + JSON_STORE, "Loaded",
                         JOptionPane.INFORMATION_MESSAGE);

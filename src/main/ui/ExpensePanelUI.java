@@ -1,7 +1,6 @@
 package ui;
 
 import model.Expense;
-import model.ExpenseLog;
 import model.MonthlyExpenses;
 
 import javax.swing.*;
@@ -12,6 +11,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+// This ExpensePanelUI references code from these StackOverflow links
+// Link: [https://docs.oracle.com/javase/tutorial/uiswing/components/list.html]
+// Link: [https://docs.oracle.com/javase/tutorial/displayCode.html?code=
+// https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java]
 
 public class ExpensePanelUI extends JPanel {
     private JList list;
@@ -30,8 +34,12 @@ public class ExpensePanelUI extends JPanel {
 
     public ExpensePanelUI(MonthlyExpenses monthList, DefaultListModel<Expense> expenseModel) {
         super(new BorderLayout());
-        this.expenseModel = expenseModel;
         this.monthList = monthList;
+        this.expenseModel = expenseModel;
+
+        for (Expense exp: monthList.getExpenses()) {
+            expenseModel.addElement(exp);
+        }
 
         list = new JList(this.expenseModel);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -41,7 +49,6 @@ public class ExpensePanelUI extends JPanel {
 
         addButtons();
         createExpenseLogPanel();
-
     }
 
     public void addButtons() {
@@ -82,10 +89,6 @@ public class ExpensePanelUI extends JPanel {
         buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
         buttonPane.add(Box.createHorizontalStrut(5));
-//        buttonPane.add(txtMonth);
-//        txtMonth.setText(String.valueOf(monthList.getMonth()));
-//        buttonPane.add(txtYear);
-//        txtYear.setText(String.valueOf(monthList.getYear()));
         buttonPane.add(txtDescription);
         txtDescription.setText("desc");
         buttonPane.add(txtPrice);
@@ -165,13 +168,9 @@ public class ExpensePanelUI extends JPanel {
         }
 
         public void addToExpenseList() {
-//            String month = txtMonth.getText();
-//            String year = txtYear.getText();
             String description = txtDescription.getText();
             String price = txtPrice.getText();
 
-//            int intMonth = Integer.parseInt(month);
-//            int intYear = Integer.parseInt(year);
             int intPrice = Integer.parseInt(price);
 
             if (monthList.getBudget() == 0 && intPrice >= 0) {

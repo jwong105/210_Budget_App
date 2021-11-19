@@ -9,10 +9,14 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+// This MonthlyExpensesUI references code from these StackOverflow links
+// Link: [https://stackoverflow.com/questions/5609200/adding-an-actionlistener-to-a-jlist]
+// Link: [https://docs.oracle.com/javase/tutorial/uiswing/components/list.html]
+
 // Expense log display panel in main Budget window frame
 public class MonthlyExpensesUI extends JPanel {
     private JList list;
-    private DefaultListModel<MonthlyExpenses> monthlyModel;
+    protected DefaultListModel<MonthlyExpenses> monthlyModel;
     private ExpenseLog log;
     private DefaultListModel<Expense> expenseModel;
 
@@ -27,12 +31,11 @@ public class MonthlyExpensesUI extends JPanel {
 
     // MODIFIES: this
     // EFFECTS:
-    public MonthlyExpensesUI(ExpenseLog log, DefaultListModel<Expense> expenseModel) {
+    public MonthlyExpensesUI(ExpenseLog log) {
         super(new BorderLayout());
 
         monthlyModel = new DefaultListModel();
         this.log = log;
-        this.expenseModel = expenseModel;
 
         //Create the list and put it in a scroll pane.
         list = new JList(monthlyModel);
@@ -130,8 +133,7 @@ public class MonthlyExpensesUI extends JPanel {
 
                             String string = list.getSelectedValue().toString();
                             if (string.equals(newMonthlyExpenses.toString())) {
-                                new ExpenseUI(newMonthlyExpenses, expenseModel);
-//                                MonthlyExpenses selectedItem = (MonthlyExpenses) list.getSelectedValue();
+                                new ExpenseUI(newMonthlyExpenses);
                             }
                         }
                     }
@@ -172,6 +174,23 @@ public class MonthlyExpensesUI extends JPanel {
                 return true;
             }
             return false;
+        }
+    }
+
+    public void createWithLog(ExpenseLog log) {
+        for (MonthlyExpenses me : log.getMonthlyExpense()) {
+            monthlyModel.addElement(me);
+            MouseListener mouseListener = new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    if (e.getClickCount() == 2) {
+                        String string = list.getSelectedValue().toString();
+                        if (string.equals(me.toString())) {
+                            new ExpenseUI(me);
+                        }
+                    }
+                }
+            };
+            list.addMouseListener(mouseListener);
         }
     }
 }

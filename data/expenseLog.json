@@ -1,10 +1,43 @@
 {
-    "monthly expenses": [{
-        "month": 1,
-        "year": 2019,
-        "expense": [],
-        "budget remaining": 0,
-        "budget": 0
-    }],
+    "monthly expenses": [
+        {
+            "month": 1,
+            "year": 2021,
+            "expense": [
+                {
+                    "month": 1,
+                    "year": 2021,
+                    "price": 200,
+                    "description": "desc"
+                },
+                {
+                    "month": 1,
+                    "year": 2021,
+                    "price": 30,
+                    "description": "desc"
+                },
+                {
+                    "month": 1,
+                    "year": 2021,
+                    "price": 300,
+                    "description": "desc"
+                }
+            ],
+            "budget remaining": -30,
+            "budget": 500
+        },
+        {
+            "month": 2,
+            "year": 2021,
+            "expense": [{
+                "month": 2,
+                "year": 2021,
+                "price": 560,
+                "description": "desc"
+            }],
+            "budget remaining": 440,
+            "budget": 1000
+        }
+    ],
     "name": "Budget App"
 }
