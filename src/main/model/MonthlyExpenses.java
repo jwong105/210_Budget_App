@@ -31,14 +31,11 @@ public class MonthlyExpenses implements Writable {
     // REQUIRES: budget > 0
     // MODIFIES: this
     // EFFECTS: sets a budget in dollars for the month
-    public double setBudget(int year, int month, int i) {
+    public void setBudget(int year, int month, int i) {
         YearMonth date = YearMonth.of(year, month);
         if (this.date.equals(date)) {
             this.budget = i;
             this.budgetRemaining = budget;
-            return budget;
-        } else {
-            return 0;
         }
     }
 
@@ -73,7 +70,7 @@ public class MonthlyExpenses implements Writable {
     }
 
     // getter
-    public double getBudgetRemaining() {
+    public int getBudgetRemaining() {
         return budgetRemaining;
     }
 
@@ -90,6 +87,11 @@ public class MonthlyExpenses implements Writable {
     // getter
     public int getYear() {
         return year;
+    }
+
+    //getter
+    public int getBudget() {
+        return budget;
     }
 
     // setter

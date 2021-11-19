@@ -94,14 +94,18 @@ class MonthlyExpensesTest {
 
     @Test
     void testSetBudget() {
-        assertEquals(365, m1.setBudget(2021, 10, 365));
-        assertEquals(0, m2.setBudget(2021, 10, 365));
-        assertEquals(1900, m3.setBudget(2019, 4, 1900));
+        m1.setBudget(2021, 10, 365);
+        m2.setBudget(2021, 10, 365);
+        m3.setBudget(2019, 4, 1900);
+        assertEquals(365, m1.getBudget());
+        assertEquals(0, m2.getBudget());
+        assertEquals(1900, m3.getBudget());
     }
 
     @Test
     void testGetBudgetRemaining() {
-        assertEquals(1201, m1.setBudget(2021, 10,1201));
+        m1.setBudget(2021, 10,1201);
+        assertEquals(1201,m1.getBudget() );
         m1.addExpense(e1);
         assertEquals(1,m1.getBudgetRemaining());
 

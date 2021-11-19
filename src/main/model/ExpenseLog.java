@@ -48,6 +48,13 @@ public class ExpenseLog implements Writable {
         return name;
     }
 
+    //setter
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     // EFFECTS: returns the number of monthly expense lists in expense log
     public int length() {
         return expenseLog.size();
