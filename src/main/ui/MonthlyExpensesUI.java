@@ -28,16 +28,13 @@ public class MonthlyExpensesUI extends JPanel {
     private int intMonth;
     private int intYear;
 
-
-    // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: constructs monthly expenses panel
     public MonthlyExpensesUI(ExpenseLog log) {
         super(new BorderLayout());
 
         monthlyModel = new DefaultListModel();
         this.log = log;
 
-        //Create the list and put it in a scroll pane.
         list = new JList(monthlyModel);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setSelectedIndex(0);
@@ -81,27 +78,29 @@ public class MonthlyExpensesUI extends JPanel {
         add(buttonPane, BorderLayout.PAGE_END);
     }
 
-    // MODIFIES: this
-    // EFFECTS: action to be taken when user wants to add dates to expense log
+    // AddListener to input months into expense log panel
     class AddListener implements ActionListener, DocumentListener {
         private boolean alreadyEnabled = false;
         private JButton button;
 
+        // MODIFIES: this
+        // EFFECTS: adds listener button
         public AddListener(JButton button) {
             this.button = button;
         }
 
-        //Required by ActionListener.
+        // MODIFIES: this
+        // EFFECTS: action to be taken when user wants to add dates to expense log
         public void actionPerformed(ActionEvent e) {
             String month = txtMonth.getText();
             intMonth = Integer.parseInt(month);
             String year = txtYear.getText();
             intYear = Integer.parseInt(year);
 
-            int index = list.getSelectedIndex(); //get selected index
-            if (index == -1) { //no selection, so insert at beginning
+            int index = list.getSelectedIndex();
+            if (index == -1) {
                 index = 0;
-            } else {           //add after the selected item
+            } else {
                 index++;
             }
 
@@ -113,13 +112,12 @@ public class MonthlyExpensesUI extends JPanel {
             txtYear.requestFocusInWindow();
             txtYear.setText("year");
 
-            //Select the new item and make it visible.
             list.setSelectedIndex(index);
             list.ensureIndexIsVisible(index);
 
         }
 
-        // MODIFIES: this
+        // MODIFIES: this, BudgetAppUI
         // EFFECTS: adds date to expense log and opens new expense frame when clicked
         public void addToExpenseLog() {
             MonthlyExpenses monthlyExpenses = log.getMonthlyExpenses(intYear, intMonth);
@@ -166,7 +164,7 @@ public class MonthlyExpensesUI extends JPanel {
             }
         }
 
-        // EFFECTS: handles empty texts when adding date to expense log
+        // EFFECTS: returns true when text field is empty
         private boolean handleEmptyTextField(DocumentEvent e) {
             if (e.getDocument().getLength() <= 0) {
                 button.setEnabled(false);
@@ -177,10 +175,14 @@ public class MonthlyExpensesUI extends JPanel {
         }
     }
 
+    // MODIFIES: this, BudgetAppUI
+    // EFFECTS: recreates expense log panel upon loading
     public void createWithLog(ExpenseLog log) {
         for (MonthlyExpenses me : log.getMonthlyExpense()) {
             monthlyModel.addElement(me);
             MouseListener mouseListener = new MouseAdapter() {
+
+                // EFFECTS: constructs an ExpenseUI upon clicking a date
                 public void mouseClicked(MouseEvent e) {
                     if (e.getClickCount() == 2) {
                         String string = list.getSelectedValue().toString();

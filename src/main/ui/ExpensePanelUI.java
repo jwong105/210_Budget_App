@@ -17,6 +17,7 @@ import java.util.ArrayList;
 // Link: [https://docs.oracle.com/javase/tutorial/displayCode.html?code=
 // https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ListDemoProject/src/components/ListDemo.java]
 
+// Expense display panel in ExpenseUI Dialog
 public class ExpensePanelUI extends JPanel {
     private JList list;
     private DefaultListModel<Expense> expenseModel;
@@ -32,6 +33,7 @@ public class ExpensePanelUI extends JPanel {
     private JScrollPane listScrollPane;
     private MonthlyExpenses monthList;
 
+    // EFFECTS: constructs expense list panel
     public ExpensePanelUI(MonthlyExpenses monthList, DefaultListModel<Expense> expenseModel) {
         super(new BorderLayout());
         this.monthList = monthList;
@@ -51,6 +53,8 @@ public class ExpensePanelUI extends JPanel {
         createExpenseLogPanel();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up buttons to input expense information
     public void addButtons() {
         addButton = new JButton(addString);
         AddListener addListener = new AddListener(addButton);
@@ -100,13 +104,12 @@ public class ExpensePanelUI extends JPanel {
         add(buttonPane, BorderLayout.PAGE_END);
     }
 
-
+    // RemoveListener to remove expenses from expense panel
     class RemoveListener implements ActionListener {
 
+        // MODIFIES: this, ExpenseUI
+        // EFFECTS: action to be taken when user wants to remove expenses
         public void actionPerformed(ActionEvent e) {
-            //This method can be called only if
-            //there's a valid selection
-            //so go ahead and remove whatever's selected.
             int index = list.getSelectedIndex();
             String string = list.getSelectedValue().toString();
             ArrayList<Expense> remove = new ArrayList<>();
@@ -137,21 +140,24 @@ public class ExpensePanelUI extends JPanel {
         }
     }
 
-    //This listener is shared by the text field and the hire button.
+    // AddListener to input expenses into expense panel
     class AddListener implements ActionListener, DocumentListener {
         private boolean alreadyEnabled = false;
         private JButton button;
 
+        // MODIFIES: this
+        // EFFECTS: adds listener button
         public AddListener(JButton button) {
             this.button = button;
         }
 
-        //Required by ActionListener.
+        // MODIFIES: this
+        // EFFECTS: action to be taken when user wants to add expenses to month
         public void actionPerformed(ActionEvent e) {
-            int index = list.getSelectedIndex(); //get selected index
-            if (index == -1) { //no selection, so insert at beginning
+            int index = list.getSelectedIndex();
+            if (index == -1) {
                 index = 0;
-            } else {           //add after the selected item
+            } else {
                 index++;
             }
             addToExpenseList();
@@ -162,11 +168,12 @@ public class ExpensePanelUI extends JPanel {
             txtPrice.requestFocusInWindow();
             txtPrice.setText("price");
 
-            //Select the new item and make it visible.
             list.setSelectedIndex(index);
             list.ensureIndexIsVisible(index);
         }
 
+        // MODIFIES: this, ExpenseUI
+        // EFFECTS: adds expenses to month
         public void addToExpenseList() {
             String description = txtDescription.getText();
             String price = txtPrice.getText();
@@ -186,29 +193,31 @@ public class ExpensePanelUI extends JPanel {
             }
         }
 
-        //Required by DocumentListener.
+        // EFFECTS: inserts update for DocumentListener
         public void insertUpdate(DocumentEvent e) {
             enableButton();
         }
 
-        //Required by DocumentListener.
+        // EFFECTS: removes update for DocumentListener
         public void removeUpdate(DocumentEvent e) {
             handleEmptyTextField(e);
         }
 
-        //Required by DocumentListener.
+        // EFFECTS: updates when inserted text changes for DocumentListener
         public void changedUpdate(DocumentEvent e) {
             if (!handleEmptyTextField(e)) {
                 enableButton();
             }
         }
 
+        // EFFECTS: enables add date button
         private void enableButton() {
             if (!alreadyEnabled) {
                 button.setEnabled(true);
             }
         }
 
+        // EFFECTS: returns true when text field is empty
         private boolean handleEmptyTextField(DocumentEvent e) {
             if (e.getDocument().getLength() <= 0) {
                 button.setEnabled(false);
@@ -219,16 +228,13 @@ public class ExpensePanelUI extends JPanel {
         }
     }
 
-    //This method is required by ListSelectionListener.
+    // EFFECTS: enables remove button if item is selected
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
 
             if (list.getSelectedIndex() == -1) {
-                //No selection, disable fire button.
                 removeButton.setEnabled(false);
-
             } else {
-                //Selection, enable the fire button.
                 removeButton.setEnabled(true);
             }
         }

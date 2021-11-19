@@ -1,7 +1,6 @@
 package ui;
 
 import model.Expense;
-import model.ExpenseLog;
 import model.MonthlyExpenses;
 
 import java.awt.*;
@@ -19,7 +18,6 @@ public class ExpenseUI extends JDialog {
     private static final String addString = "Add Expense";
     private static final String removeString = "Remove Expense";
 
-    // MODIFIES: this
     // EFFECTS: constructs expense list and sets up button panel, and visual expense window
     public ExpenseUI(MonthlyExpenses selectedItem) {
         frame = new JDialog(parentFrame, "Budget App", true);
@@ -37,8 +35,7 @@ public class ExpenseUI extends JDialog {
         frame.setVisible(true);
     }
 
-    // MODIFIES: this
-    // EFFECTS: sets up visual expense window to display list of expenses for each month
+    // EFFECTS: constructs a visual expense window to display list of expenses for each month
     private void addExpenseDisplayPanel() {
         ExpensePanelUI expensePanelUI = new ExpensePanelUI(monthList, expenseModel);
         frame.add(expensePanelUI, BorderLayout.CENTER);

@@ -1,8 +1,6 @@
 package ui;
 
-import model.Expense;
 import model.ExpenseLog;
-import model.MonthlyExpenses;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -28,7 +26,7 @@ class BudgetAppUI extends JFrame {
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/expenseLog.json";
     private JPanel logoPanel;
-    private JPanel buttonPanelLeft;
+    private JPanel buttonPanel;
     private MonthlyExpensesUI monthlyExpensesUI;
 
     // EFFECTS: constructs expense log and sets up button panel, and visual budget app window to display months
@@ -54,6 +52,8 @@ class BudgetAppUI extends JFrame {
         parentFrame.add(monthlyExpensesUI, BorderLayout.CENTER);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds logo panel to main window
     private JPanel addLogoPanel() {
         logoPanel = new JPanel();
         logoPanel.setOpaque(false);
@@ -61,6 +61,7 @@ class BudgetAppUI extends JFrame {
         return logoPanel;
     }
 
+    // EFFECTS: adds image of logo
     private JLabel addLogo() {
         BufferedImage image = null;
         try {
@@ -76,15 +77,17 @@ class BudgetAppUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: adds control buttons to main window
     private JPanel addButtonPanel() {
-        buttonPanelLeft = new JPanel();
-        buttonPanelLeft.setBackground(Color.lightGray);
-        buttonPanelLeft.setLayout(new GridLayout(3, 1));
-        buttonPanelLeft.add(new JButton(new SaveBudget()));
-        buttonPanelLeft.add(new JButton(new LoadBudget()));
-        buttonPanelLeft.add(new JButton(new QuitApp()));
-        return buttonPanelLeft;
+        buttonPanel = new JPanel();
+        buttonPanel.setBackground(Color.lightGray);
+        buttonPanel.setLayout(new GridLayout(3, 1));
+        buttonPanel.add(new JButton(new SaveBudget()));
+        buttonPanel.add(new JButton(new LoadBudget()));
+        buttonPanel.add(new JButton(new QuitApp()));
+        return buttonPanel;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds side panel to main window
     private void addSidePanel() {
         JPanel sidePanel = new JPanel();
         sidePanel.setBackground(Color.lightGray);
@@ -142,7 +145,7 @@ class BudgetAppUI extends JFrame {
                 String file = fc.getSelectedFile().getAbsolutePath();
                 jsonReader = new JsonReader(file);
             }
-//            jsonReader = new JsonReader(JSON_STORE);
+
             try {
                 log = jsonReader.read();
                 monthlyExpensesUI.createWithLog(log);
