@@ -78,7 +78,6 @@ class BudgetAppUI extends JFrame {
     // EFFECTS: adds control buttons to main window
     private JPanel addButtonPanel() {
         buttonPanel = new JPanel();
-        buttonPanel.setBackground(Color.lightGray);
         buttonPanel.setLayout(new GridLayout(3, 1));
         buttonPanel.add(new JButton(new SaveBudget()));
         buttonPanel.add(new JButton(new LoadBudget()));
@@ -90,7 +89,6 @@ class BudgetAppUI extends JFrame {
     // EFFECTS: adds side panel to main window
     private void addSidePanel() {
         JPanel sidePanel = new JPanel();
-        sidePanel.setBackground(Color.lightGray);
         GridLayout grid = new GridLayout(2,1);
         sidePanel.setLayout(grid);
         sidePanel.setSize(new Dimension(300,750));
