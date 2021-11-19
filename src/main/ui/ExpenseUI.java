@@ -70,6 +70,10 @@ public class ExpenseUI extends JDialog {
                         "Budget (in whole numbers)?", "Enter budget", JOptionPane.QUESTION_MESSAGE);
                 int budget = Integer.parseInt(txtBudget);
                 monthList.setBudget(monthList.getYear(), monthList.getMonth(), budget);
+                JOptionPane.showMessageDialog(null,
+                        "The budget for " + monthList.getMonthString(monthList.getMonth()) + " "
+                                + monthList.getYear() + " has been set to $" + monthList.getBudget(),
+                        "Budget has been set", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Budget already set for this date", "System Error", JOptionPane.ERROR_MESSAGE);
